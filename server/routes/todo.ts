@@ -2,13 +2,13 @@ import * as express from 'express';
 import { authenticateJwt, SECRET } from "../middleware/index";
 import { Todo } from "../db";
 const router = express.Router();
-
-// interface CreateTodoInput {
-//   title: string;
-//   description: string;
-// }
+import { todoInput } from '@pradheep1647/common';
 
 router.post('/todos', authenticateJwt, (req, res) => {
+  const todoInputSchema = todoInput.safeParse(req.body);
+  if(!todoInputSchema.success){
+    res.status(403).send({ message : "please give current input"});
+  }
   const { title, description } = req.body;
   const done = false;
   const userId = req.headers["userId"];

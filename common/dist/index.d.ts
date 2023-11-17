@@ -11,13 +11,19 @@ export declare const signupInput: z.ZodObject<{
 }>;
 export type SignupParams = z.infer<typeof signupInput>;
 export declare const todoInput: z.ZodObject<{
+    _id: z.ZodString;
     title: z.ZodString;
     description: z.ZodString;
+    done: z.ZodBoolean;
 }, "strip", z.ZodTypeAny, {
+    _id: string;
     title: string;
     description: string;
+    done: boolean;
 }, {
+    _id: string;
     title: string;
     description: string;
+    done: boolean;
 }>;
 export type TodoParams = z.infer<typeof todoInput>;
